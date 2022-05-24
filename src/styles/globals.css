@@ -116,3 +116,56 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+.wrapper {
+  background: url('/images/back.png') no-repeat;
+  background-size: contain;
+  background-position: top right;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chats {
+  /* background: rgba(0, 0, 0, 0.015); */
+  margin-left: auto;
+  padding: 20px;
+  border-radius: 8px 8px 8px 8px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.composer {
+  position: relative;
+}
+
+.composer:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 15px solid #7cd3fc;
+  z-index: 100;
+  transform: translateY(calc(-100% + 8px));
+  border-right-color: transparent;
+  border-top-color: transparent;
+}

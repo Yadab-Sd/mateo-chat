@@ -1,10 +1,9 @@
 import * as React from 'react';
 
 import Layout from '@/components/layout/Layout';
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import NextImage from '@/components/NextImage';
 import Seo from '@/components/Seo';
 
 /**
@@ -14,60 +13,85 @@ import Seo from '@/components/Seo';
  * You can override the next-env if the type is important to you
  * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
  */
-import Vercel from '~/svg/Vercel.svg';
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
+const chats = [
+  'Hi',
+  'Hello',
+  "How're you?",
+  'I am doing well. What is about you?',
+];
 export default function HomePage() {
   return (
     <Layout>
       {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
-      <main>
-        <section className='bg-white'>
-          <div className='layout flex min-h-screen flex-col items-center justify-center text-center'>
-            <Vercel className='text-5xl' />
-            <h1 className='mt-4'>
-              Next.js + Tailwind CSS + TypeScript Starter
-            </h1>
-            <p className='mt-2 text-sm text-gray-800'>
-              A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
-              Import, Seo, Link component, pre-configured with Husky{' '}
-            </p>
-            <p className='mt-2 text-sm text-gray-700'>
-              <ArrowLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
-                See the repository
-              </ArrowLink>
-            </p>
-
-            <ButtonLink className='mt-6' href='/components' variant='light'>
-              See all components
-            </ButtonLink>
-
-            <UnstyledLink
-              href='https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter'
-              className='mt-4'
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                width='92'
-                height='32'
-                src='https://vercel.com/button'
-                alt='Deploy with Vercel'
+      <main className='h-screen overflow-hidden'>
+        <section className='wrapper h-full bg-white'>
+          <div className='flex items-center p-4'>
+            <UnstyledLink href='/' className='mr-4 mb-2'>
+              <NextImage
+                useSkeleton
+                className='w-16 md:w-20'
+                src='/favicon/apple-icon-180x180.png'
+                width='80'
+                height='80'
+                alt='Icon'
               />
             </UnstyledLink>
+            <h2 className='mb-2'>Mateo Chat</h2>
+          </div>
+          <div className='chat-container layout mb-40 h-full'>
+            <div className='chats min-hcontent mb-12 flex h-1/2 max-h-max flex-grow flex-col items-end border-r-2 border-primary-400 pt-2 pb-2 pr-6'>
+              <div className='flex flex-col items-end overflow-auto pr-6'>
+                {chats.map((text, i) => (
+                  <div
+                    className='flex justify-end'
+                    key={`${i}-${Math.random()}`}
+                  >
+                    <div className='mr-4 text-right'>
+                      <p className='mb-2 text-gray-600'>{text}</p>
+                      <p className='mb-6 text-right text-xs text-gray-400'>
+                        {new Date(Date.now()).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <NextImage
+                      useSkeleton
+                      className='mt-1 h-8 w-8 rounded-full bg-white shadow'
+                      src='/'
+                      width='40'
+                      height='40'
+                      alt=''
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
 
-            <footer className='absolute bottom-2 text-gray-700'>
-              © {new Date().getFullYear()} By{' '}
-              <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
-                Theodorus Clarence
-              </UnderlineLink>
-            </footer>
+            <div className='composer flex w-full'>
+              <div className='composer flex w-1/2 flex-wrap items-end justify-between rounded-lg bg-primary-300 p-6'>
+                <textarea
+                  placeholder='Message...'
+                  className='h-24 flex-grow rounded-md border border-gray-300 p-4 text-sm shadow-sm'
+                ></textarea>
+                {/* <ButtonLink className='px-8' href='/components' variant='light'>
+                SEND
+              </ButtonLink> */}
+              </div>
+            </div>
           </div>
         </section>
+
+        <footer className='absolute bottom-2 w-full p-4 text-center text-sm text-gray-700'>
+          © {new Date().getFullYear()} By{' '}
+          <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
+            Theodorus Clarence
+          </UnderlineLink>
+        </footer>
       </main>
     </Layout>
   );
