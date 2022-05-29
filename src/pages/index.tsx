@@ -54,8 +54,8 @@ export default function HomePage() {
                     </div>
                     <NextImage
                       useSkeleton
-                      className='mt-1 h-8 w-8 rounded-full bg-white shadow'
-                      src='/'
+                      className='mt-1 h-8 w-8 overflow-hidden rounded-full bg-white object-cover shadow'
+                      src='/images/user.png'
                       width={40}
                       height={40}
                       alt=''
