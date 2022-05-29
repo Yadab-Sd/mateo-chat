@@ -109,6 +109,7 @@ export default function DraftEditor({ name }: PropTypes) {
             <NextImage
               src={data.data}
               className='h-12 w-16 overflow-hidden object-cover text-xs'
+              imgClassName='object-cover'
               alt={data.name}
               width={64}
               height={48}
