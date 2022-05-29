@@ -20,7 +20,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@types/draft-js": "^0.11.9",
     "clsx": "^1.1.1",
+    "draft-js": "^0.11.7",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -39,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "autoprefixer": "^10.4.7",
+    "classnames": "^2.3.1",
     "eslint": "^8.16.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",

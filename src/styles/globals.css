@@ -169,3 +169,23 @@
   border-right-color: transparent;
   border-top-color: transparent;
 }
+
+.DraftEditor-root {
+  width: 100%;
+}
+
+.times {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  top: -8px;
+  right: -8px;
+  background: #e91e63;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}

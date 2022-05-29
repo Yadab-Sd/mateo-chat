@@ -1,4 +1,6 @@
+import dynamic from 'next/dynamic';
 import * as React from 'react';
+import { Suspense } from 'react';
 
 import Layout from '@/components/layout/Layout';
 import UnderlineLink from '@/components/links/UnderlineLink';
@@ -6,28 +8,20 @@ import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
 import Seo from '@/components/Seo';
 
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
-
 const chats = [
   'Hi',
   'Hello',
   "How're you?",
   'I am doing well. What is about you?',
 ];
+
+const TextEditor = dynamic(() => import('@/components/DraftEditor'), {
+  ssr: false,
+});
+
 export default function HomePage() {
   return (
     <Layout>
-      {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
       <main className='h-screen overflow-hidden'>
@@ -73,11 +67,12 @@ export default function HomePage() {
             </div>
 
             <div className='composer flex w-full'>
-              <div className='composer flex w-1/2 flex-wrap items-end justify-between rounded-lg bg-primary-300 p-6'>
-                <textarea
-                  placeholder='Message...'
-                  className='h-24 flex-grow rounded-md border border-gray-300 p-4 text-sm shadow-sm'
-                ></textarea>
+              <div className='composer flexx w-1/2 flex-wrap items-end justify-between rounded-lg bg-primary-300 p-6'>
+                <div className='bg-white'>
+                  <Suspense fallback='loading...'>
+                    <TextEditor />
+                  </Suspense>
+                </div>
                 {/* <ButtonLink className='px-8' href='/components' variant='light'>
                 SEND
               </ButtonLink> */}
