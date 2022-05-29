@@ -1,6 +1,5 @@
 import cn from 'classnames';
 import { ContentState, Editor, EditorState } from 'draft-js';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import 'draft-js/dist/Draft.css';
@@ -107,12 +106,12 @@ export default function DraftEditor({ name }: PropTypes) {
             >
               ×
             </button>
-            <Image
+            <NextImage
               src={data.data}
-              className='overflow-hidden object-cover'
+              className='h-12 w-16 overflow-hidden object-cover text-xs'
               alt={data.name}
-              width='48'
-              height='48'
+              width={64}
+              height={48}
             />
           </div>
         ))}
@@ -140,8 +139,8 @@ export default function DraftEditor({ name }: PropTypes) {
       >
         <NextImage
           src='/images/new-tab.png'
-          height='30'
-          width='30'
+          height={30}
+          width={30}
           alt='Send'
           className='brightness-100'
         />

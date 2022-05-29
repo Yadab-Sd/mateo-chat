@@ -31,9 +31,9 @@ export default function HomePage() {
                 useSkeleton
                 className='w-16 md:w-20'
                 src='/favicon/apple-icon-180x180.png'
-                width='80'
-                height='80'
-                alt='Icon'
+                width={80}
+                height={80}
+                alt='TS'
               />
             </UnstyledLink>
             <h2 className='mb-2'>Mateo Chat</h2>
@@ -56,8 +56,8 @@ export default function HomePage() {
                       useSkeleton
                       className='mt-1 h-8 w-8 rounded-full bg-white shadow'
                       src='/'
-                      width='40'
-                      height='40'
+                      width={40}
+                      height={40}
                       alt=''
                     />
                   </div>
@@ -65,7 +65,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className='composer flex w-full'>
-              <div className='composer flexx w-1/2 flex-wrap items-end justify-between rounded-lg bg-primary-300 p-6'>
+              <div className='composer w-full rounded-lg bg-primary-300 p-6 lg:w-1/2'>
                 <div className='bg-white'>
                   <Suspense fallback='loading...'>
                     <TextEditor />
