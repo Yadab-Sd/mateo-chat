@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 
 import 'draft-js/dist/Draft.css';
 
+import Button from '@/components/buttons/Button';
+import NextImage from '@/components/NextImage';
+
 export { ContentState, EditorState };
 
 interface PropTypes {
@@ -20,7 +23,7 @@ export default function DraftEditor({ name }: PropTypes) {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedFiles, setSelectedFiles] = useState<SelectedFileType[]>([]);
 
-  function getPreviewImg(file: Blob) {
+  const getPreviewImg = (file: Blob) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
@@ -31,7 +34,7 @@ export default function DraftEditor({ name }: PropTypes) {
         reject(fileReader.result);
       };
     });
-  }
+  };
 
   const pasteAction = async (files: Blob[]) => {
     if (files?.length > 0) {
@@ -65,6 +68,15 @@ export default function DraftEditor({ name }: PropTypes) {
     setSelectedFiles((prevFiles: SelectedFileType[]) => {
       return [...prevFiles]?.filter((_, i) => i !== index);
     });
+  };
+
+  const sendMessage = () => {
+    console.log(
+      'Pasted Files: ',
+      selectedFiles.map((file) => file.name)
+    );
+    setSelectedFiles([]);
+    setEditorState(EditorState.createEmpty());
   };
 
   // for rest files (without image)
@@ -111,12 +123,29 @@ export default function DraftEditor({ name }: PropTypes) {
           editorState={editorState}
           onChange={setEditorState}
           handlePastedFiles={(files) => {
-            pasteAction(files);
-            return 'handled';
+            try {
+              pasteAction(files);
+              return 'handled';
+            } catch (e) {
+              return 'not-handled';
+            }
           }}
           placeholder='Type here...'
         />
       </div>
+      <Button
+        className='absolute right-2 bottom-2 h-10 w-10 rounded-full border-2 border-white bg-emerald-200 px-3 shadow-lg'
+        variant='ghost'
+        onClick={sendMessage}
+      >
+        <NextImage
+          src='/images/new-tab.png'
+          height='30'
+          width='30'
+          alt='Send'
+          className='brightness-100'
+        />
+      </Button>
     </div>
   );
 }

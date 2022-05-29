@@ -23,7 +23,6 @@ export default function HomePage() {
   return (
     <Layout>
       <Seo />
-
       <main className='h-screen overflow-hidden'>
         <section className='wrapper h-full bg-white'>
           <div className='flex items-center p-4'>
@@ -65,7 +64,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-
             <div className='composer flex w-full'>
               <div className='composer flexx w-1/2 flex-wrap items-end justify-between rounded-lg bg-primary-300 p-6'>
                 <div className='bg-white'>
@@ -73,9 +71,6 @@ export default function HomePage() {
                     <TextEditor />
                   </Suspense>
                 </div>
-                {/* <ButtonLink className='px-8' href='/components' variant='light'>
-                SEND
-              </ButtonLink> */}
               </div>
             </div>
           </div>
